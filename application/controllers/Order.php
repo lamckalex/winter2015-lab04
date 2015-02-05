@@ -21,8 +21,8 @@ class Order extends Application {
         $order_num = $this->orders->highest() + 1;
         $newOrderItem = $this->orders->create();
         
-        $newOrderItem->num -> $order_num;
-        $newOrderItem->date -> date('Y-m-d');
+        $newOrderItem->num = $order_num;
+        $newOrderItem->date = date('Y-m-d');
         $newOrderItem->status = "a";
         
         $this->orders->add($newOrderItem);
@@ -37,7 +37,7 @@ class Order extends Application {
 
         $this->data['pagebody'] = 'show_menu';
         $this->data['order_num'] = $order_num;
-        $this->data['title'] = $order_num + $this->orders->total($order_num);
+        $this->data['title'] = $order_num + number_format($this->orders->total($order_num), 2);
         //FIXME
 
         // Make the columns
